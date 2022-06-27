@@ -29,6 +29,10 @@ export const setInterceptors: SetInterceptors = (isAuth, instance) => {
       options => {
         const accessToken = cookies.get("accessToken") || null;
 
+        if (!accessToken) {
+          return
+        }
+
         options.headers = {
           Authorization: `Bearer ${accessToken}`,
         }
@@ -40,10 +44,7 @@ export const setInterceptors: SetInterceptors = (isAuth, instance) => {
 
   instance.interceptors.response.use(
     res => convertResponse(res),
-    error => {
-      Promise.reject(error.response)
-      return convertResponse(error.response)
-    }
+    error => convertResponse(error)
   )
 
   return instance
