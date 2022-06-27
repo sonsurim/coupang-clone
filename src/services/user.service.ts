@@ -2,11 +2,11 @@ import { auth, BASE_URL } from '../apis/index'
 
 class UserService {
   async me() {
-    return await auth.get(`${BASE_URL}/users/me`);
+    return auth.get(`${BASE_URL}/users/me`);
   }
 
   async read(id: number) {
-    return await auth.get(`${BASE_URL}/users/${id}`);
+    return auth.get(`${BASE_URL}/users/${id}`);
   }
 }
 
