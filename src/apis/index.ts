@@ -4,18 +4,19 @@ import type { createInstance } from './types'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_HOST
 
-export const instance: createInstance = (url, options) => {
+const createInstance: createInstance = (url, options) => {
   const _instance = axios.create({
     baseURL: BASE_URL,
     url,
     ...options
   })
 
+
   setInterceptors(false, _instance)
   return _instance
 }
 
-export const auth: createInstance = (url, options) => {
+const createInstanceWithAuth: createInstance = (url, options) => {
   const _instance = axios.create({
     baseURL: BASE_URL,
     url,
@@ -25,3 +26,6 @@ export const auth: createInstance = (url, options) => {
   setInterceptors(true, _instance)
   return _instance
 }
+
+export const instance = createInstance()
+export const auth = createInstanceWithAuth()

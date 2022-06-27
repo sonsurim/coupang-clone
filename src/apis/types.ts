@@ -11,7 +11,7 @@ type ConvertResponse = (res: AxiosResponse) => Response
 type SetInterceptors = (isAuth: boolean, instance: AxiosInstance) => AxiosInstance
 
 /* Axios Create */
-type createInstance = (url: string, options: AxiosRequestConfig) => AxiosInstance
+type createInstance = (url?: string, options?: AxiosRequestConfig) => AxiosInstance
 
 export type {
   Response,
